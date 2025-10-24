@@ -1,0 +1,66 @@
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib.auth import login
+from django.contrib import messages
+from django.core.exceptions import ValidationError
+from django.core.validators import EmailValidator
+
+def register(request):
+    if request.method == 'POST':
+        # Extract form data from POST
+        username = request.POST.get('username')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        email = request.POST.get('email')
+        
+        # Validation checks
+
+        # 1. Check if all fields are filled
+        if not username or not password1 or not password2 or not email:
+            messages.error(request, "All fields are required.")
+            return render(request, 'registration/register.html')
+
+        # 2. Validate email format
+        try:
+            EmailValidator()(email)
+        except ValidationError:
+            messages.error(request, "Enter a valid email address.")
+            return render(request, 'registration/register.html')
+
+        # 3. Check if the password fields match
+        if password1 != password2:
+            messages.error(request, "Passwords do not match.")
+            return render(request, 'registration/register.html')
+
+        # 4. Check password strength (minimum 8 characters, etc.)
+        if len(password1) < 8:
+            messages.error(request, "Password must be at least 8 characters long.")
+            return render(request, 'registration/register.html')
+
+        # 5. Check if the username already exists
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username is already taken.")
+            return render(request, 'registration/register.html')
+
+        # 6. Check if the email already exists
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email is already registered.")
+            return render(request, 'registration/register.html')
+
+        # 7. If validation passed, create the user
+        try:
+            user = User.objects.create_user(username=username, password=password1, email=email)
+            user.save()
+        except Exception as e:
+            messages.error(request, f"Error: {str(e)}")
+            return render(request, 'registration/register.html')
+
+        # 8. Log the user in automatically after registration
+        login(request, user)
+
+        # 9. Redirect to the home page or dashboard
+        messages.success(request, "Registration successful!")
+        return redirect('home')  # Change this to the desired redirect URL
+
+    # GET request: just render the registration page with an empty form
+    return render(request, 'registration/register.html')

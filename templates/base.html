@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>{% block title %} {% endblock title %}</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/res-navbar.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/bootstrap-icons-1.9.0.css' %}" />
+        <script src="{% static 'javascript/JQuery/jquery-3.4.1.min.js' %}"></script>
+        <!-- <link rel="stylesheet" href="../static/css/style.css" />
+        <link rel="stylesheet" href="../static/css/res-navbar.css" />
+        <link rel="stylesheet" href="../static/css/bootstrap-icons-1.9.0.css" />
+        <script src="../static/javascript/JQuery/jquery-3.4.1.min.js"></script> -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet" />
+        
+    </head>
+    <body>
+       <!-- <header> -->
+        <div class="topnav">
+            <span class="our_logo">
+               <a href="home"> WIIMB</a>
+               <span class="our_logo_motto">WHAT IS IN MY BRAIN?</span>
+            </span>
+            <ul>
+                <li><a href="home">Home</a></li>
+                <li><a href="services">Services</a></li>
+                <li><a href="#"><span class="bi bi-shield"></span>&nbsp;Verification</a></li>
+                <!-- <li><a href="#">Emergency</a></li> -->
+                <li><a href="#">Find Doctors</a></li>
+            </ul>
+            <span class="signup_button"><a href="signup">Signup</a></span>
+            <span class="signin_button"><a href="signin">Login</a></span>
+        </div>
+       <!-- </header> -->
+       <!-- <br />
+       <br />
+       <br /> 
+       <br />
+       <br /> -->
+
+       {% block content %}
+
+       {% endblock content %}
+
+       <div class="footer">
+            <ul>
+                <li><a href="home">Home</a></li>
+                <li><a href="services">Services</a></li>
+                <li><a href="#"><span class="bi bi-shield"></span>&nbsp;Verification</a></li>
+                <!-- <li><a href="#">Emergency</a></li> -->
+                <li><a href="#">Find Doctors</a></li>
+            </ul>
+        </div>
+        <script>
+
+            $(document).ready(function(){
+    const winh = $(window).height();
+    const doch =$(document).height();
+
+    if(doch<=winh){
+        $('.footer').css({
+            'position':'absolute','bottom':'1px', 'width':'100%' });
+    }
+
+    });
+
+        //     $(document).ready(function()
+        // {
+        //     var page_height = $(document).height();
+        //     //alert(page_height);
+        //     $('.main_container').css({'height':+(page_height-250)});
+        //     });
+        </script>
+       
+    </body>
+</html>

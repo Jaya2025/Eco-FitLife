@@ -1,0 +1,70 @@
+<!-- {% load static %}  -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="../static/css/style.css" />
+        <link rel="stylesheet" href="../static/css/res-navbar.css" />
+        <link rel="stylesheet" href="../static/css/bootstrap-icons-1.9.0.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
+        <script src="../static/javascript/JQuery/jquery-3.4.1.min.js"></script>
+    </head>
+    <body style="background-color: rgb(29, 29, 29); padding: 1%;">
+        <div class="dashboard_container">
+            <h2>For the Patient</h2>
+
+            <div class="col-4">
+
+                <div class="sidebar-left">
+                    <details style="transition: 5s;"> 
+                        <summary id="panel">Health Journaling</summary>
+                        <ul id="flip">
+                            <li><a href="#">How's your day, today?</a></li>
+                            <li><a href="#">Analyze my day !</a></li>
+                            <li><a href="#">Refresh my mood...</a></li>
+                        </ul></details>
+                       <details> <summary><a href="">Quick Chat</a></summary></details>
+                       <details> <summary><a href="">Community</a></summary></details>
+                       <!-- <details> <summary> Report & Analysis</summary>
+                        
+                        <ul>
+                            <li><a href="">Weekly Progress Report</a></li>
+                            <li><a href="">Doctor-Oriented Report Analyzer</a></li>
+                            </ul>
+                   </details> -->
+                      
+                    
+                </div>
+                
+            </div>
+
+            <!-- <div class="col-8">
+               
+            </div> -->
+        </div>
+        <script>
+            $(document).ready(function()
+        {
+            var page_height = $(document).height();
+            //alert(page_height);
+            $('.sidebar-left').css({'height':+(page_height)});
+
+    //           $("#panel").click(function(){
+    //     $("#flip").slideToggle('slow');
+    // });
+
+    // // $(document).ready(function(){
+    // $("summary").click(function(){
+    //     $("ul").slideToggle("slow");
+    // });
+});
+            // });
+        </script>
+    </body>
+</html>
